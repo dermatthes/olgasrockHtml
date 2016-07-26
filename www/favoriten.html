@@ -1,0 +1,184 @@
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="style/default.css">
+    <link rel="stylesheet" href="style/colors.css">
+    <link rel="stylesheet" href="style/icons.css">
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="stylesheet" href="style/inlay_popup.css">
+
+    <link rel="stylesheet" href="style/p_favoriten.css">
+    <link rel="stylesheet" href="style/p_favoriten_popup.css">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/siteHooks.js"></script>
+    <script src="js/FF.class.js"></script>
+    <script src="js/FAsset.class.js"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<!-- PHP-COMP-INCLUDE: ./_menu.inc.html --><ul id="menu" class="menu">
+    <li class="color_bg_start icon_start"><a href="home.html">START</a></li>
+    <li class="color_bg_spielplan icon_spielplan"><a href="spielplan.html">SPIELPLAN</a></li>
+    <li class="color_bg_favoriten icon_favoriten_empty"><a href="favoriten.html">FAVORITEN</a></li>
+    <li class="color_bg_karte icon_karte"><a href="karte.html">KARTE</a></li>
+    <li class="color_bg_bus icon_bus"><a href="bus.html">BUS</a></li>
+</ul>
+
+<!-- /PHP-COMP-INCLUDE -->
+
+<div class="header color_bg_favoriten">
+    <div class="left icon_favoriten_empty"></div>
+    <div class="center">FAVORITEN</div>
+    <div class="right icon_logo"></div>
+</div>
+
+<!-- Eigentliche Seite -->
+
+<div class="content_container_with_header">
+
+    <div class="button_group">
+        <input id="day1" type="radio" name="day" value="1" checked="checked" onchange="updateSite();">
+        <label for="day1">Fr. 12.08.</label>
+
+        <input id="day2" type="radio" name="day" value="2" onchange="updateSite();">
+        <label for="day2">Sa. 13.08.</label>
+
+    </div>
+
+    <div class="button_group">
+
+        <label for="stage1" class="active">Bühne 1</label>
+
+
+        <label for="stage1" class="active">Bühne 2</label>
+
+    </div>
+
+    <script language="JavaScript">
+        var htmlContentBuffer = [];
+        function addBand (id, name, iconUrl, fromTime, toTime, area, isFavorite) {
+            var html = '<div class="evt_row">';
+
+
+            if (area == 1) {
+                html += '<div class="evt_liste_half left">';
+            } else {
+                html += '<div class="evt_liste_half right" >';
+            }
+
+
+
+
+            var favClass = "icon_favoriten_empty";
+            if (isFavorite == 1)
+                favClass = "icon_favoriten";
+
+            html += '<img src="' + iconUrl + '" onclick="openBandInfo(\'' + id + '\')"/>';
+            html += '<div class="title" onclick="openBandInfo(\'' + id + '\')"><span class="vcenter">' + name + '</span></div>';
+            html += '<div class="favBox" onclick=""><div class="times">' + fromTime + '<br/>' + toTime + '</div><div class="favIcon_' + id + ' favIcon '+favClass+'"></div>';
+            html += '</div></div></div>';
+            htmlContentBuffer.push(html);
+        }
+
+        window.setInterval(function () {
+            if (htmlContentBuffer.length == 0)
+                return;
+            $(".evt_liste").append(htmlContentBuffer[0]);
+            htmlContentBuffer.splice(0, 1);
+
+        }, 50);
+
+
+        function openBandInfo (id) {
+            var evtData = FF.sql("SELECT * FROM event WHERE id=? ", [id]).first();
+            var imageUrl = FAsset.eventImageUrl(id);
+            var contentUrl = FAsset.eventInfoUrl(id);
+
+            var bandInfo = $("#bandinfo");
+            $(".imgContainer", bandInfo).css("background-image", "url(" + imageUrl + ")");
+            $(".bandTitle", bandInfo).text(evtData.name);
+            $(".bandSub", bandInfo).text ("Bühne " + evtData.ofStage + " // " + evtData.timeStart + " - " + evtData.timeEnd);
+            $(".scrolltext", bandInfo).load (contentUrl);
+
+            $(".erinnernBtn", bandInfo).attr("onclick", "toggleFavorite('" + id + "')");
+
+            // Alle Klassen entfernen und neu setzen
+            var favBtn = $(".erinnernBtn", bandInfo);
+            favBtn.removeClass();
+            favBtn.addClass("erinnernBtn");
+            favBtn.addClass("favIcon_" + id); // <- Ident hier rüber
+            if (evtData.isFavorite == 1) {
+                favBtn.addClass("icon_favoriten");
+            } else {
+                favBtn.addClass("icon_favoriten_empty");
+            }
+            inlay.open();
+        }
+
+
+        function updateSite () {
+            showDay = $("input[name='day']:checked").val();
+            FF.sql("SELECT * FROM event WHERE ofDay=? AND ofStage IN (1, 2) AND isFavorite='1' ORDER BY slot ASC", [showDay])
+                    .onHasData(function () {
+                        $(".evt_liste").html("");
+                    })
+                    .onHasNoData (function () {
+                        $(".evt_liste").html("");
+                        $(".evt_liste").html('Du hast bisher keinen Act als Favoriten gewählt. Klick auf <img src="style/p/40x40px/Favoriten_favourite.png" style="height: 14px; width: 14px; background-color: #718598; border-radius: 100px; border: 1px solid #718598"> um einen Act zu markieren.');
+
+                    })
+                    .each (function (data) {
+                        addBand (data.id, data.name, "", data.timeStart, data.timeEnd, data.ofStage, 1);
+                    });
+        }
+
+
+        $(document).ready (function () {
+            window.setTimeout(function () {
+                updateSite();
+            }, 80);
+        });
+
+
+        var inlay = new Inlay("#bandinfo");
+
+
+    </script>
+
+    <div class="scrollcontainer">
+        <div class="evt_liste">
+
+        </div>
+    </div>
+    <!-- Popup -->
+    <div id="bandinfo" class="inlay_popup">
+        <div class="header_transparent" onclick="inlay.close();"></div>
+        <div class="header_inlay color_bg_favoriten" onclick="inlay.close();"></div>
+        <div class="inlay_popup_content">
+            <div class="imgContainer">
+
+                <div class="imgInfo">
+                    <div class="infoOpacity"></div>
+                    <div class="bandTitle">Bandtitel hier</div>
+                    <div class="bandSub">Bandinfo hier</div>
+                    <div class="erinnernBtn icon_favoriten"></div>
+                </div>
+            </div>
+            <div class="scrolltext">
+
+            </div>
+        </div>
+    </div>
+    <!-- /Popup -->
+</div>
+
+
+</body>
+
+</html>

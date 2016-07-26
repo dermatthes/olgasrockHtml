@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="style/default.css">
+    <link rel="stylesheet" href="style/colors.css">
+    <link rel="stylesheet" href="style/icons.css">
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="stylesheet" href="style/inlay_popup.css">
+    <link rel="stylesheet" href="style/p_bus.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/siteHooks.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<!-- PHP-COMP-INCLUDE: ./_menu.inc.html --><ul id="menu" class="menu">
+    <li class="color_bg_start icon_start"><a href="home.html">START</a></li>
+    <li class="color_bg_spielplan icon_spielplan"><a href="spielplan.html">SPIELPLAN</a></li>
+    <li class="color_bg_favoriten icon_favoriten_empty"><a href="favoriten.html">FAVORITEN</a></li>
+    <li class="color_bg_karte icon_karte"><a href="karte.html">KARTE</a></li>
+    <li class="color_bg_bus icon_bus"><a href="bus.html">BUS</a></li>
+</ul>
+
+<!-- /PHP-COMP-INCLUDE -->
+
+
+<div class="header color_bg_bus">
+    <div class="left icon_bus"></div>
+    <div class="center">BUS FAHRPLAN</div>
+    <div class="right icon_logo"></div>
+</div>
+
+<!-- Eigentliche Seite -->
+
+<script language="JavaScript">
+    function changeBus ()  {
+        $("#buscontent").hide(0);
+        $("#buscontent").html("");
+        $("#buscontent").load("media/bus/" + $("input[name='fahrtrichtung']:checked").val() + "-" + $("input[name='haltestelle']:checked").val() + ".html");
+        $("#buscontent").show();
+    };
+
+    $(document).ready (function () {
+        $(".buttons").change(changeBus);
+        changeBus();
+    });
+
+</script>
+
+<div class="content_container_with_header">
+    <h1>Fahrtrichtung</h1>
+    <div class="button_group">
+        <input id="r1" type="radio" class="buttons" name="fahrtrichtung" value="hauptbahnhof" checked="checked">
+        <label for="r1">Oberhausen Hbf</label>
+
+        <input id="r2" type="radio" class="buttons" name="fahrtrichtung" value="sterkrade">
+        <label for="r2">Sterkrade Bf</label>
+    </div>
+
+    <h1>Haltestelle</h1>
+    <div class="button_group">
+        <input id="h1" type="radio" name="haltestelle" class="buttons" value="olgapark" checked="checked">
+        <label for="h1">Olga-Park</label>
+
+        <input id="h2" type="radio" class="buttons" name="haltestelle" value="zecheosterfeld">
+        <label for="h2">Zeche Osterfeld</label>
+    </div>
+
+    <div id="buscontent">
+
+
+    </div>
+
+</div>
+
+
+
+</body>
+
+</html>

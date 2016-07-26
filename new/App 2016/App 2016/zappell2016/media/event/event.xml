@@ -1,0 +1,40 @@
+<festevo revision="12">
+    <stagedef>
+        <stage id="1" name="Bühne 1"/>
+        <stage id="2" name="Bühne 2"/>
+    </stagedef>
+
+    <daydef>
+        <day id="1" name="Fr, 12.08."/>
+        <day id="2" name="Sa, 13.08."/>
+    </daydef>
+
+    <events>
+        <event id="iceland-iceland" name="Iceland Iceland" timeStart="14:35" timeEnd="15:05" slot="2" ofStage="1" ofDay="1"/>
+        <event id="isaac-vacuum" name="Isaac Vacuum" timeStart="15:45" timeEnd="16:20" slot="4" ofStage="1" ofDay="1"/>
+        <event id="kmpfsprt" name="Kmpfsprt" timeStart="17:20" timeEnd="18:10" slot="6" ofStage="1" ofDay="1"/>
+        <event id="birth-of-joy" name="Birth Of Joy" timeStart="19:20" timeEnd="20:20" slot="8" ofStage="1" ofDay="1"/>
+        <event id="eskimo-callboy" name="Eskimo Callboy" timeStart="21:40" timeEnd="23:00" slot="10" ofStage="1" ofDay="1"/>
+
+        <event id="xela-wie" name="Xela Wie" timeStart="14:00" timeEnd="14:30" slot="1" ofStage="2" ofDay="1"/>
+        <event id="ankerkette" name="Ankerkette" timeStart="15:10" timeEnd="15:40" slot="3" ofStage="2" ofDay="1"/>
+        <event id="lot" name="LOT" timeStart="16:25" timeEnd="17:15" slot="5" ofStage="2" ofDay="1"/>
+        <event id="faber" name="Faber" timeStart="18:20" timeEnd="19:10" slot="7" ofStage="2" ofDay="1"/>
+        <event id="mantar" name="Mantar" timeStart="20:30" timeEnd="21:30" slot="9" ofStage="2" ofDay="1"/>
+
+        <event id="liar" name="Liar" timeStart="13:30" timeEnd="14:00" slot="2" ofStage="1" ofDay="2"/>
+        <event id="francis-riley" name="Francis Riley" timeStart="14:40" timeEnd="15:10" slot="4" ofStage="1" ofDay="2"/>
+        <event id="avalanche-partey" name="Avalanche Party" timeStart="15:50" timeEnd="16:30" slot="6" ofStage="1" ofDay="2"/>
+        <event id="annisokay" name="Annisokay" timeStart="17:25" timeEnd="18:15" slot="8" ofStage="1" ofDay="2"/>
+        <event id="le-fly" name="Le Fly" timeStart="19:15" timeEnd="20:15" slot="10" ofStage="1" ofDay="2"/>
+        <event id="the-subways" name="The Subways" timeStart="21:45" timeEnd="23:00" slot="12" ofStage="1" ofDay="2"/>
+
+        <event id="und-wieder-oktober" name="Und Wieder Oktober" timeStart="12:55" timeEnd="13:25" slot="1" ofStage="2" ofDay="2"/>
+        <event id="astairre" name="Astairre" timeStart="14:05" timeEnd="14:35" slot="3" ofStage="2" ofDay="2"/>
+        <event id="8kids" name="8Kids" timeStart="15:15" timeEnd="15:45" slot="5" ofStage="2" ofDay="2"/>
+        <event id="tuesn" name="Tüsn" timeStart="16:35" timeEnd="17:20" slot="7" ofStage="2" ofDay="2"/>
+        <event id="the-tips" name="The Tips" timeStart="18:20" timeEnd="19:05" slot="9" ofStage="2" ofDay="2"/>
+        <event id="liedfett" name="Liedfett" timeStart="20:35" timeEnd="21:35" slot="11" ofStage="2" ofDay="2"/>
+
+    </events>
+</festevo>

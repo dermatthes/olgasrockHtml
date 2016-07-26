@@ -1,0 +1,112 @@
+h1 {
+    font-size: 14px;
+    text-align: center;
+    font-weight: normal;
+}
+
+
+.button_group {
+    width:100%;
+    text-align: center;
+}
+
+.button_group input {
+    display: none;
+
+}
+
+.button_group label {
+    width:40%;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #f7b594;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.button_group input:checked + label {
+    background-color: #f7b594;
+    color: #ffffff;
+}
+
+.button_group label:hover {
+    background-color: gray;
+}
+
+
+#buscontent {
+    position: fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    top: 230px;
+    overflow: scroll;
+    display: table;
+
+    width:100%;
+
+}
+
+#buscontent input {
+    display: none;
+}
+
+
+/* Content */
+
+.busbb {
+    border-top: 1px solid darkgray;
+    vertical-align: top;
+
+    width: 100%;
+
+}
+
+#buscontent input:checked + div {
+    background-color: #f7b594 ;
+    color: #fff;
+}
+
+.busbb .linie {
+    height: 40px;
+    line-height: 40px;
+    width: 35%;
+    font-size: 26px;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.busbb .stops {
+    line-height: 40px;
+    width: 60%;
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+
+}
+
+.busbb .hidden {
+    height: 0;
+    display: block;
+    overflow: hidden;
+    width: auto;
+    line-height: 14px;
+    font-size: 12px;
+}
+
+
+.busbb:last-child {
+    border-bottom: 1px solid darkgray;
+}
+
+#buscontent input:checked + div .hidden {
+    height: auto;
+    transition: height 1.5s;
+    color: #fff;
+}
+

@@ -1,0 +1,45 @@
+Struktur der Bandinfos
+================================================================================================
+
+Zu jeder Band werden neben den Auftrittsdaten auch zwei Bilder (Icon + großes Bild) sowie
+eine HTML - Datei mit den Band-infos (Text, evtl. Soundcloud) benötigt. Damit diese
+automatisch verarbeitet werden können, muss folgende Struktur eingehalten werden:
+
+Platzhalter:
+------------
+
+[BANDID]:   Eine Abkürzung zur Indentifikation des Datensatzes. Nicht erlaubt sind Sonderzeichen
+            oder Leerzeichen.
+
+
+Konfigurationsdatei:
+--------------------
+event.xml
+
+
+
+
+Dateien:
+--------
+
+[BANDID].html           HTML Formatierter Text mit den Informationen zur Band
+[BANDID]_icon.jpg       55x55px JPG Grafik mit kleinen Icon der Band
+[BANDID].jpg            Bild der Band für Detailseite:
+                            Breite: 350 - 450px
+                            Höhe:   mindestens 220px - 350px
+
+
+
+Beispiel für die Namen:
+-----------------------
+Bandname: Turbostaat
+BandId: TS
+
+-> Folgende Dateien müssen existieren:
+
+TS.html         Bandinfo
+TS.jpg          Bild in 350x220px
+
+
+
+

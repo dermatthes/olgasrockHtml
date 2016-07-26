@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="style/default.css">
+        <link rel="stylesheet" href="style/colors.css">
+        <link rel="stylesheet" href="style/icons.css">
+        <link rel="stylesheet" href="style/menu.css">
+        <link rel="stylesheet" href="style/p_home.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/menu.js"></script>
+        <script src="js/siteHooks.js"></script>
+        <script src="js/FF.class.js"></script>
+        <script src="js/FAsset.class.js"></script>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+
+    <body>
+
+        <!-- PHP-COMP-INCLUDE: ./_menu.inc.html --><ul id="menu" class="menu">
+    <li class="color_bg_start icon_start"><a href="home.html">START</a></li>
+    <li class="color_bg_spielplan icon_spielplan"><a href="spielplan.html">SPIELPLAN</a></li>
+    <li class="color_bg_favoriten icon_favoriten_empty"><a href="favoriten.html">FAVORITEN</a></li>
+    <li class="color_bg_karte icon_karte"><a href="karte.html">KARTE</a></li>
+    <li class="color_bg_bus icon_bus"><a href="bus.html">BUS</a></li>
+</ul>
+
+<!-- /PHP-COMP-INCLUDE -->
+        <!-- Eigentliche Seite -->
+
+        <div id="home_splash" class="color_bg_start">
+            <div class="home_impressum" onclick="window.location='impressum.html'">&nbsp;</div>
+            <div class="home_logo" onclick="Menu.open();"></div>
+            <div class="home_schrift" onclick="Menu.open();"></div>
+            <div class="home_info" onclick="Menu.open();">
+                12. - 13. August 2016<br/>
+                Olga-Park Oberhausen<br/>
+                <span style="color: #ffffff">Eintritt Frei!</span>
+            </div>
+            <div class="home_line" onclick="Menu.open();">
+                Los geht's >
+            </div>
+        </div>
+
+
+    </body>
+
+</html>

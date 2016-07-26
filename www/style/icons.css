@@ -1,0 +1,33 @@
+
+.icon_back {
+    background-image: url(p/pfeil_links.png);
+}
+
+.icon_start {
+    background-image: url(p/40x40px/Start.png);
+}
+
+.icon_spielplan {
+    background-image: url(p/40x40px/Spielplan.png);
+}
+
+.icon_favoriten {
+    background-image: url(p/40x40px/Favoriten_favourite.png);
+}
+
+
+.icon_favoriten_empty {
+    background-image: url(p/40x40px/Favoriten_favourite_empty.png);
+}
+
+.icon_karte {
+    background-image: url(p/40x40px/Karte.png);
+}
+
+.icon_bus {
+    background-image: url(p/40x40px/bus.png);
+}
+
+.icon_logo {
+    background-image: url(p/40x40px/Logo_Kopf.png);
+}

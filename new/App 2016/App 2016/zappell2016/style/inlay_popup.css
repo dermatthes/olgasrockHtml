@@ -1,0 +1,38 @@
+
+.inlay_popup {
+    position: fixed;
+    height:100%;
+
+    bottom: -100%; /* Hidden below site */
+    left: 0;
+    right: 0;
+    z-index: 333333;
+}
+
+.inlay_popup .header_transparent {
+    /* Defines the area to touch and close bigger than the orgiginal image */
+
+    width:100%;
+    height:45px; /* höhe wie normaler header */
+    z-index: 444444;
+}
+
+
+.inlay_popup .header_inlay {
+    /* Defines the area to touch and close bigger than the orgiginal image */
+    background-image: url(p/pfeil_unten_30x30px.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width:100%;
+    height:35px;
+    z-index: 444444;
+}
+
+
+.inlay_popup_content {
+   height:100%;
+    background-color: #ffffff;
+}
+
+
+
