@@ -7,3 +7,8 @@ Visit OlgasRock App in Appstore for Android und IOS
 ## Testdaten aus event.xml einspielen
 
 per `sqlitecom.php?a=create`
+
+
+## Einspielen
+
+Inhalt vom `/www` in Asset Verzeichnis kopieren. 
