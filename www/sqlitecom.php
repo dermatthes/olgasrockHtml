@@ -5,12 +5,11 @@
  * Date: 29.07.14
  * Time: 17:54
  */
-require ("__exceptionHandler.inc.php");
 ini_set ("xdebug.default_enable", 0 );
 ini_set('xdebug.default_enable', false);
 ini_set('html_errors', false);
 
-ini_set ("display_errors", false);
+ini_set ("display_errors", true);
 
 
 
@@ -18,18 +17,26 @@ ini_set ("display_errors", false);
 $db = new SQLite3("/tmp/olga.sqlite");
 
 
-if ($_GET["a"] == "create") {
+if (@$_GET["a"] == "create") {
+    unlink ("/tmp/olga.sqlite");
+    $db = new SQLite3("/tmp/olga.sqlite");
     $sql = [
-        "CREATE TABLE event (id VARCHAR(255) NOT NULL PRIMARY KEY, name VARCHAR(255), ofDay int, ofStage int, slot int, timeStart time, timeEnd time, isFavorite INT)",
-        "INSERT INTO event (id, name, ofDay, ofStage, slot, timeStart, timeEnd, isFavorite) VALUES ('turbostaat', 'Turbostaat die Band', '1', '1', '1', '09:00', '11:45', 0)",
-        "INSERT INTO event (id, name, ofDay, ofStage, slot, timeStart, timeEnd, isFavorite) VALUES ('PSEmpire', 'Empire Irgendwas', '1', '1', '1', '11:00', '11:45', 0)"
+        "CREATE TABLE event (id VARCHAR(255) NOT NULL PRIMARY KEY, name VARCHAR(255), ofDay int, ofStage int, slot int, timeStart time, timeEnd time, isFavorite INT)"
     ];
+
+    $simpleXml = new SimpleXMLElement(file_get_contents(__DIR__ . "/media/event/event.xml"));
+    foreach ($simpleXml->events->event as $event) {
+        $sql[] = "INSERT INTO event (id, name, ofDay, ofStage, slot, timeStart, timeEnd, isFavorite) VALUES ('{$event->attributes()->id}', '{$event->attributes()->name}', '{$event->attributes()->ofDay}', '{$event->attributes()->ofStage}', '{$event->attributes()->slot}', '{$event->attributes()->timeStart}', '{$event->attributes()->timeEnd}', 0)";
+    }
     foreach ($sql as $cur) {
+        echo "\n<br>" . highlight_string($cur);
         if ( ! $stmt = $db->prepare($cur)) {
             throw new Exception("Sqlite::prepare($query): " . $db->lastErrorMsg());
         }
         $result = $stmt->execute();
     }
+    echo "DONE!";
+    exit;
 }
 
 

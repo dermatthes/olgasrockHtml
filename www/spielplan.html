@@ -109,7 +109,7 @@
             if (isFavorite == 1)
                 favClass = "icon_favoriten";
 
-            html += '<img src="' + iconUrl + '" onclick="openBandInfo(\'' + id + '\')"/>';
+            html += '<div class="img" style="background-image:url(' + iconUrl + ')" onclick="openBandInfo(\'' + id + '\')"/>';
             html += '<div class="title" onclick="openBandInfo(\'' + id + '\')"><span class="vcenter">' + name + '</span></div>';
             html += '<div class="favBox" onclick="toggleFavorite(\''+ id +'\')"><div class="times">' + fromTime + '<br/>' + toTime + '</div><div class="favIcon_' + id + ' favIcon '+favClass+'"></div>';
             html += '</div></div></div>';
